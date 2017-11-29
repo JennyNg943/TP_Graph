@@ -1,5 +1,5 @@
 TP_Graphe: main.o graph.o
-	g++ -std=c++11 main.o arbre.o -o TP_Graphe
+	g++ -std=c++11 main.o graph.o -o TP_Graphe
 
 main.o: main.cpp
 	g++ -std=c++11 -c main.cpp

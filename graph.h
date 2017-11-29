@@ -1,26 +1,24 @@
 using namespace std;
 #include "element.h"
+#include <cstdio>
+#include <cstdlib>
+#include <iostream>
 
-class Noeud {
+
+class Graph {
 
 	public:
-		Element valeur;
-		Noeud* gauche;
-		Noeud* droit;
-		Noeud* parent;
-		char couleur;
+		int altitude;
+		int nbSommets;
 
-	Noeud();
-	Noeud(Element e);
-	~Noeud();
 
-	void supprimer(Noeud* n, Element e);
-	Noeud* recherche(Noeud* n, Element e);
-	void inserer(Noeud*& n, Element e);
-	void insererUnElement(Noeud*& n, Element e,Noeud*& parent);
-	void ArbreOK(Noeud*& n);
+	Graph();
+	Graph(Element e);
+	~Graph();
+
+	Graph* recherche(Graph* n, Element e);
 	// void afficher( Noeud* n );
-	void afficher(Noeud *pN, int profondeur = 0);
-
+	void liaisonNoeud(int sommets);
+	void afficher(Graph *n);
 
 };
