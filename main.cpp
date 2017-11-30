@@ -7,7 +7,7 @@ using namespace std;
 
 int main() {
 
-	Graph* g = new Graph(15);
+	Graph* g = new Graph(3);
 	g->liaisonNoeud(5);
 	g->liaisonNoeud(2);
 	g->liaisonNoeud(9);

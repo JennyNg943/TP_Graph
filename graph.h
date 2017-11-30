@@ -10,10 +10,9 @@ class Graph {
 	public:
 		int altitude;
 		int nbSommets;
+		int nbCouche;
 
-
-	Graph();
-	Graph(Element e);
+	Graph(int couche);
 	~Graph();
 
 	Graph* recherche(Graph* n, Element e);
