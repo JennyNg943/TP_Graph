@@ -17,10 +17,27 @@ Graph::Graph(int nbSo){
 
 void Graph::liaisonNoeud(int sommets){
 	int couche = log2(sommets) + 1;
-	int predecesseur = fmod(pow(2,couche+1) - (pow(2,couche+1)-(sommets-1)), pow(2,couche));
-	int successeur = fmod(pow(2,couche) - ((sommets-pow(2,couche))+1), pow(2,couche));
-	cout << "Le sommet " << sommets << " est lié à "<< sommets/2 << "," << 2*sommets <<","<<2*sommets+1<< ",";
-	cout << predecesseur << ","<<successeur << endl;
+	int predecesseur =  fmod(pow(2,couche) + (sommets-1), pow(2,couche));
+	int successeur = pow(2,couche) + fmod(((sommets-pow(2,couche))+1), pow(2,couche));
+	cout << "Le sommet " << sommets << " est lié à ";
+	if (sommets/2 != 0){
+		cout << sommets/2 << " ";
+	}
+	if(2*sommets != 0){
+		cout << 2*sommets <<" ";
+	}
+	if(2*sommets+1 != 0){
+		cout << 2*sommets+1 << " ";
+	}
+	if (predecesseur != 0){
+		cout << predecesseur << " ";
+	}
+	if(successeur != 0){
+		cout << successeur;
+	}
+
+	cout << endl;
+
 }
 
 Graph::~Graph(){

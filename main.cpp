@@ -12,7 +12,7 @@ int main() {
 	g->liaisonNoeud(2);
 	g->liaisonNoeud(9);
 	g->liaisonNoeud(7);
-
+	g->liaisonNoeud(1);
 	/*vector<Noeud> noeuds;
 
 	Noeud* n = new Noeud(1,0);
