@@ -3,13 +3,14 @@ using namespace std;
 #include <cstdio>
 #include <cstdlib>
 #include <iostream>
+#include <vector>
 
 
 class Graph {
 
 	public:
-		int altitude;
-		int nbSommets;
+		int altitude[1];
+		int tailleGraph;
 		int nbCouche;
 
 	Graph(int couche);
@@ -19,5 +20,7 @@ class Graph {
 	// void afficher( Noeud* n );
 	void liaisonNoeud(int sommets);
 	void afficher(Graph *n);
+	void ChoixAltitude(int index, int altitudeValeur);
+	void affichageAltitude();
 
 };
