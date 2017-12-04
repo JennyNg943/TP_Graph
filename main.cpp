@@ -13,12 +13,19 @@ int main() {
 	cout << endl;
 
 	Graph* g = new Graph(choixCouche);
-	g->liaisonNoeud(5);
+
+	vector<int> test;
+	test = g->liaisonNoeud(2);
+	for(vector<int>::iterator i = test.begin(); i != test.end();++i){
+		cout << *i;
+	}
+	cout<< endl;
+	/*g->liaisonNoeud(5);
 	g->liaisonNoeud(2);
 	g->liaisonNoeud(9);
 	g->liaisonNoeud(7);
-	g->liaisonNoeud(1);
-	
+	g->liaisonNoeud(1);*/
+
 	g->ChoixAltitude(1,5);
 	g->ChoixAltitude(10,2);
 

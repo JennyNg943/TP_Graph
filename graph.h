@@ -9,7 +9,7 @@ using namespace std;
 class Graph {
 
 	public:
-		int altitude[1];
+		vector<int> altitude;
 		int tailleGraph;
 		int nbCouche;
 
@@ -18,9 +18,11 @@ class Graph {
 
 	Graph* recherche(Graph* n, Element e);
 	// void afficher( Noeud* n );
-	void liaisonNoeud(int sommets);
+	vector<int> liaisonNoeud(int sommets);
 	void afficher(Graph *n);
 	void ChoixAltitude(int index, int altitudeValeur);
 	void affichageAltitude();
+	int Altitude(int index);
+	Graph* rechercheChemin(int source, int destination);
 
 };
