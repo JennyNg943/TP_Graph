@@ -21,43 +21,30 @@ vector<int> Graph::liaisonNoeud(int sommets){
 		int couche = log2(sommets) + 1;
 		int predecesseur =  fmod(pow(2,couche) + (sommets-1), pow(2,couche));
 		int successeur = pow(2,couche) + fmod(((sommets-pow(2,couche))+1), pow(2,couche));
-		cout << "Le sommet " << sommets << " est lié à ";
 		int i = 0;
-		cout << "	";
 		if (sommets/2 != 0){
-			cout << sommets/2;
 			voisins.push_back(sommets/2);
 			i++;
 		}
-		cout << "	";
 		if(2*sommets != 0){
-			cout << 2*sommets;
 			voisins.push_back(sommets*2);
 			i++;
 		}
-		cout << "	";
 		if(2*sommets+1 != 0){
-			cout << 2*sommets+1 ;
 			voisins.push_back(2*sommets+1);
 			i++;
 		}
-		cout << "	";
 		if (predecesseur != 0 && predecesseur != 2*sommets+1 && predecesseur != sommets/2 &&  predecesseur != 2*sommets){
-			cout << predecesseur ;
 			voisins.push_back(predecesseur);
 			i++;
 		}
-		cout << "	";
 		if(successeur != 0 && successeur != 2*sommets && successeur != 2*sommets+1 && successeur != sommets/2){
-			cout << successeur;
 			voisins.push_back(successeur);
 			i++;
 		}
-		cout << " 		Possède donc " << i << " voisins."<< endl;
 		return voisins;
 	}else{
 		cout << "Ce sommet n'est pas disponible dans un graphe à " << this->nbCouche << " couche(s)." << endl;
-
 	}
 
 
@@ -82,7 +69,6 @@ int Graph::Altitude(int index){
 }
 
 void Graph::affichageAltitude(){
-	cout << altitude.size() << endl;
 	for(int i = 1; i <= altitude.size() ;i++){
 		cout << "Sommet : " << i<< " - Altitude : " << altitude[i] << endl;
 	}
@@ -90,12 +76,50 @@ void Graph::affichageAltitude(){
 
 Graph* Graph::rechercheChemin(int source, int destination){
 	vector<int> voisins;
-	voisins = liaisonNoeud(source);
-	for(vector<int>::iterator i = voisins.begin(); i != voisins.end();++i){//ça affiche que les voisions du noeud source
-		cout << *i;
-	}
+	int altitudeCheminPlusCourt = 0,tmp;
+	vector<int> cheminPlusCourt;
+	vector<char> chemin(altitude.size(),'B');
 
+	int suivant = source;
+	chemin[suivant] = 'G';
+
+	while(suivant != destination){
+		cheminPlusCourt.push_back(suivant);
+		voisins = liaisonNoeud(suivant);
+		for(vector<int>::iterator i = voisins.begin(); i != voisins.end();++i){//ça affiche que les voisions du noeud source
+			if(chemin[*i] != 'N'){
+				chemin[*i] = 'G';
+			}
+		}
+		chemin[suivant] = 'N';
+
+		for(int j = 0; j <= chemin.size(); j++){
+			if(chemin[j] == 'G'){
+				if(altitudeCheminPlusCourt == 0){
+					altitudeCheminPlusCourt += altitude[j];
+					suivant = j;
+				}else if(j == destination){
+					altitudeCheminPlusCourt += altitude[j];
+					suivant = j;
+				}else if(altitudeCheminPlusCourt > altitude[j]){
+						altitudeCheminPlusCourt += altitude[j];
+						suivant = j;
+					}
+				}
+			}
+
+		}
+
+		cout << "Le chemin le plus court trouvé est : " ;
+
+		for(vector<int>::iterator i = cheminPlusCourt.begin(); i != cheminPlusCourt.end();++i){
+			cout << *i << " -> ";
+		}
+		cout << destination << endl;
+		cout << "D'altitude totale : " << altitudeCheminPlusCourt << endl;
 }
+
+
 
 void Graph::afficher(Graph *n){
 
