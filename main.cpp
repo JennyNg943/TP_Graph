@@ -13,8 +13,15 @@ int main() {
 	cout << endl;
 	Graph* g = new Graph(choixCouche);
 	int choix;
-
-	g->liaisonNoeud(2);
+	/*
+	g->ChoixAltitude(1,5);
+	g->ChoixAltitude(2,3);
+	g->ChoixAltitude(3,2);
+	g->ChoixAltitude(4,6);
+	g->ChoixAltitude(5,3);
+	g->ChoixAltitude(6,3);
+	g->ChoixAltitude(7,2);
+	*/
 
 	do
     {

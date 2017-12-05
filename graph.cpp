@@ -42,9 +42,6 @@ vector<int> Graph::liaisonNoeud(int sommets){
 			voisins.push_back(successeur);
 			i++;
 		}
-		for(vector<int>::iterator i = voisins.begin(); i != voisins.end();++i){
-			cout << *i << endl;
-		}
 		return voisins;
 	}else{
 		cout << "Ce sommet n'est pas disponible dans un graphe à " << this->nbCouche << " couche(s)." << endl;
@@ -115,7 +112,7 @@ Graph* Graph::rechercheChemin(int source, int destination){
 						altitudePlusPetite = j;
 					}else if(j == destination){
 						altitudePlusPetite = j;
-					}else if(altitude[altitudePlusPetite] > altitude[j]){
+					}else if(altitude[altitudePlusPetite] > altitude[j] && altitudePlusPetite != destination){
 						altitudePlusPetite = j;
 					}
 					if(predecesseur != 0 && predecesseur != source){
