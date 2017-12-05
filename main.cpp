@@ -14,13 +14,13 @@ int main() {
 
 	Graph* g = new Graph(choixCouche);
 	g->ChoixAltitude(1,5);
-	g->ChoixAltitude(2,3);
-	g->ChoixAltitude(3,5);
+	g->ChoixAltitude(2,4);
+	g->ChoixAltitude(3,1);
 	g->ChoixAltitude(4,6);
 	g->ChoixAltitude(5,7);
 	g->ChoixAltitude(10,2);
 
-	g->rechercheChemin(1,5);
+	g->rechercheChemin(1,4);
 	/*g->liaisonNoeud(5);
 	g->liaisonNoeud(2);
 	g->liaisonNoeud(9);

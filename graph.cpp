@@ -57,7 +57,7 @@ Graph::~Graph(){
 void Graph::ChoixAltitude(int index, int altitudeValeur){
 	if(index < tailleGraph){
 		altitude[index] = altitudeValeur;
-		cout << "Altitude changée !" << index << " " << altitudeValeur << endl;
+		cout << "Altitude changée ! Index : " << index << " - Altitude : " << altitudeValeur << endl;
 	}else{
 		cout << "Ce sommet n'existe pas !" << endl;
 	}
@@ -75,48 +75,52 @@ void Graph::affichageAltitude(){
 }
 
 Graph* Graph::rechercheChemin(int source, int destination){
-	vector<int> voisins;
-	int altitudeCheminPlusCourt = 0,tmp;
-	vector<int> cheminPlusCourt;
-	vector<char> chemin(altitude.size(),'B');
+	if(destination < altitude.size() && destination > 0 && source < altitude.size() && source > 0){
+		vector<int> voisins;
+		int altitudeCheminPlusCourt = 0,tmp;
+		vector<int> cheminPlusCourt;
+		vector<char> chemin(altitude.size(),'B');
 
-	int suivant = source;
-	chemin[suivant] = 'G';
-
-	while(suivant != destination){
-		cheminPlusCourt.push_back(suivant);
-		voisins = liaisonNoeud(suivant);
-		for(vector<int>::iterator i = voisins.begin(); i != voisins.end();++i){//ça affiche que les voisions du noeud source
-			if(chemin[*i] != 'N'){
-				chemin[*i] = 'G';
-			}
-		}
-		chemin[suivant] = 'N';
-
-		for(int j = 0; j <= chemin.size(); j++){
-			if(chemin[j] == 'G'){
-				if(altitudeCheminPlusCourt == 0){
-					altitudeCheminPlusCourt += altitude[j];
-					suivant = j;
-				}else if(j == destination){
-					altitudeCheminPlusCourt += altitude[j];
-					suivant = j;
-				}else if(altitudeCheminPlusCourt > altitude[j]){
-						altitudeCheminPlusCourt += altitude[j];
-						suivant = j;
-					}
+		int suivant = source;
+		chemin[suivant] = 'G';
+		while(suivant != destination){
+			cheminPlusCourt.push_back(suivant);
+			voisins = liaisonNoeud(suivant);
+			for(vector<int>::iterator i = voisins.begin(); i != voisins.end();++i){//ça affiche que les voisions du noeud source
+				if(chemin[*i] != 'N'){
+					chemin[*i] = 'G';
 				}
 			}
+			chemin[suivant] = 'N';
 
+			for(int j = 0; j <= chemin.size(); j++){
+				if(chemin[j] == 'G'){
+					if(altitudeCheminPlusCourt == 0){
+						suivant = j;
+					}else if(j == destination){
+						suivant = j;
+					}else if(altitudeCheminPlusCourt > altitude[j]){
+							suivant = j;
+						}
+					}
+				}
+				altitudeCheminPlusCourt += altitude[suivant];
+			}
+
+			cout << "Le chemin le plus court trouvé est : " ;
+
+			for(vector<int>::iterator i = cheminPlusCourt.begin(); i != cheminPlusCourt.end();++i){
+				if(*i == source){
+					cout << *i << "(0) -> ";
+				}else{
+					cout << *i << "(" << altitude[*i] << ") -> ";
+				}
+			}
+			cout << destination << "(" << altitude[destination] << ") "<< endl;
+			cout << "D'altitude totale : " << altitudeCheminPlusCourt << endl;
+		}else{
+			cout << "Votre source ou votre destination ne sont pas compris dans une graphe à " << nbCouche << " couche(s)." << endl;
 		}
-
-		cout << "Le chemin le plus court trouvé est : " ;
-
-		for(vector<int>::iterator i = cheminPlusCourt.begin(); i != cheminPlusCourt.end();++i){
-			cout << *i << " -> ";
-		}
-		cout << destination << endl;
-		cout << "D'altitude totale : " << altitudeCheminPlusCourt << endl;
 }
 
 
