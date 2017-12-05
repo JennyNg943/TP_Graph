@@ -163,4 +163,5 @@ void Graph::afficher(){
 		}
 		cout << i << "(" << Altitude(i) << ")";
 	}
+	cout << endl;
 }

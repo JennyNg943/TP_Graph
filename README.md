@@ -1,1 +1,1 @@
-TP10_Graphe
+Notre programme permet d'effectuer la recherche d'un plus court chemin à travers un graphe comportant des couches. Divers fonctions supplémentaires ont été ajoutés pour l'utilisateur afin de rendre plus optimale l'utilisation du programme.
