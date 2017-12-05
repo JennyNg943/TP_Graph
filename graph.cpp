@@ -76,7 +76,7 @@ void Graph::affichageAltitude(){
 }
 
 Graph* Graph::rechercheChemin(int source, int destination){
-	if(destination < altitude.size() && destination > 0 && source < altitude.size() && source > 0){
+	if(destination <= altitude.size() && destination > 0 && source <= altitude.size() && source > 0){
 		vector<int> voisins;
 		int altitudeCheminPlusCourt = 0,tmp;
 		vector<int> cheminPlusCourt;
@@ -87,7 +87,7 @@ Graph* Graph::rechercheChemin(int source, int destination){
 		while(suivant != destination){
 			cheminPlusCourt.push_back(suivant);
 			voisins = liaisonNoeud(suivant);
-			for(vector<int>::iterator i = voisins.begin(); i != voisins.end();++i){//ça affiche que les voisions du noeud source
+			for(vector<int>::iterator i = voisins.begin(); i != voisins.end();++i){
 				if(chemin[*i] != 'N'){
 					chemin[*i] = 'G';
 				}
