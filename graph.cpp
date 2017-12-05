@@ -12,7 +12,7 @@ Graph::Graph(int couche)
 	nbCouche = couche;
 	tailleGraph = pow(2,nbCouche)-1;
 	altitude.resize(tailleGraph,0);
-	cout << altitude.size() <<endl;
+	//cout << altitude.size() <<endl;
 }
 
 vector<int> Graph::liaisonNoeud(int sommets){
@@ -69,6 +69,7 @@ int Graph::Altitude(int index){
 }
 
 void Graph::affichageAltitude(){
+	//cout << altitude.size() << endl;
 	for(int i = 1; i <= altitude.size() ;i++){
 		cout << "Sommet : " << i<< " - Altitude : " << altitude[i] << endl;
 	}
