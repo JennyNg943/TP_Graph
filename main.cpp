@@ -14,8 +14,6 @@ int main() {
 	Graph* g = new Graph(choixCouche);
 	int choix;
 
-
-
 	do
     {
         cout << "  Menu Graphe\n";
@@ -83,13 +81,9 @@ int main() {
     }while (choix != 0 );
 
 
-	/*g->ChoixAltitude(1,5);
-	g->ChoixAltitude(2,4);
-	g->ChoixAltitude(3,1);
-	g->ChoixAltitude(4,6);
-	g->ChoixAltitude(5,7);
-	g->ChoixAltitude(10,2);
 
+
+	/*
 	g->rechercheChemin(1,4);
 	g->liaisonNoeud(5);
 	g->liaisonNoeud(2);

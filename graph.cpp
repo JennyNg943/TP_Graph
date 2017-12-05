@@ -55,7 +55,7 @@ Graph::~Graph(){
 }
 
 void Graph::ChoixAltitude(int index, int altitudeValeur){
-	if(index < tailleGraph){
+	if(index <= tailleGraph){
 		altitude[index] = altitudeValeur;
 		cout << "Altitude changée ! Index : " << index << " - Altitude : " << altitudeValeur << endl;
 	}else{
@@ -80,13 +80,17 @@ Graph* Graph::rechercheChemin(int source, int destination){
 		vector<int> voisins;
 		int altitudeCheminPlusCourt = 0,tmp;
 		vector<int> cheminPlusCourt;
+		vector<int> voisinControle;
+		int predecesseur = 0;
 		vector<char> chemin(altitude.size(),'B');
 
 		int suivant = source;
 		chemin[suivant] = 'G';
+
 		while(suivant != destination){
 			cheminPlusCourt.push_back(suivant);
 			voisins = liaisonNoeud(suivant);
+
 			for(vector<int>::iterator i = voisins.begin(); i != voisins.end();++i){
 				if(chemin[*i] != 'N'){
 					chemin[*i] = 'G';
@@ -94,17 +98,36 @@ Graph* Graph::rechercheChemin(int source, int destination){
 			}
 			chemin[suivant] = 'N';
 
+			int altitudePlusPetite = 0;
 			for(int j = 0; j <= chemin.size(); j++){
 				if(chemin[j] == 'G'){
-					if(altitudeCheminPlusCourt == 0){
-						suivant = j;
+					chemin[j] = 'B';
+					if(altitudePlusPetite == 0){
+						altitudePlusPetite = j;
 					}else if(j == destination){
-						suivant = j;
-					}else if(altitudeCheminPlusCourt > altitude[j]){
-							suivant = j;
+						altitudePlusPetite = j;
+					}
+					if(predecesseur != 0 && predecesseur != source){
+						voisins = liaisonNoeud(predecesseur);
+						for(vector<int>::iterator i = voisins.begin(); i != voisins.end();++i){
+							if(j == *i){
+								int tmpAltitude = altitude[predecesseur] + altitude[j];
+								if(tmpAltitude > altitude[j]){
+									cheminPlusCourt.pop_back();
+									altitudeCheminPlusCourt -= altitude[predecesseur];
+								}
+								altitudePlusPetite = j;
+							}
 						}
 					}
+
+						altitudePlusPetite = j;
+
 				}
+
+				}
+				predecesseur = suivant;
+				suivant = altitudePlusPetite;
 				altitudeCheminPlusCourt += altitude[suivant];
 			}
 
