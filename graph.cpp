@@ -119,7 +119,7 @@ Graph* Graph::rechercheChemin(int source, int destination){
 			cout << destination << "(" << altitude[destination] << ") "<< endl;
 			cout << "D'altitude totale : " << altitudeCheminPlusCourt << endl;
 		}else{
-			cout << "Votre source ou votre destination ne sont pas compris dans une graphe à " << nbCouche << " couche(s)." << endl;
+			cout << "Votre source ou votre destination ne sont pas compris dans un graphe à " << nbCouche << " couche(s)." << endl;
 		}
 }
 
