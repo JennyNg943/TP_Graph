@@ -19,10 +19,11 @@ class Graph {
 	Graph* recherche(Graph* n, Element e);
 	// void afficher( Noeud* n );
 	vector<int> liaisonNoeud(int sommets);
-	void afficher(Graph *n);
+	void afficher();
 	void ChoixAltitude(int index, int altitudeValeur);
 	void affichageAltitude();
 	int Altitude(int index);
+	int nombreVoisins(int sommet);
 	Graph* rechercheChemin(int source, int destination);
 
 };

@@ -22,6 +22,8 @@ int main() {
         cout << "  2.  Changer le nombre de couches du graphe\n";
         cout << "  3.  Recherche du chemin le plus court\n";
         cout << "  4.  Afficher les altitudes\n";
+				cout << "  5.  Nombre de voisins d'un Noeud\n";
+				cout << "  6.  Afficher le graphe\n";
         cout << "\n";
         cout << "  0.  Quitter\n";
         cout << "  ====================================\n";
@@ -68,6 +70,21 @@ int main() {
             case 4:
                 g->affichageAltitude();
                 break;
+
+						case 5 :
+								int sommet;
+								int nbvoisins;
+								cout << "Entrez le sommet dont vous voulez savoir le nombre de voisins : ";
+								cin >> sommet;
+								cout << endl;
+								nbvoisins = g->nombreVoisins(sommet);
+								cout << "Le sommet " << sommet << " a " << nbvoisins << " voisin(s)\n";
+								break;
+
+						case 6 :
+								g->afficher();
+								break;
+
 
 						case 0:
 								cout << "Au revoir\n";

@@ -50,6 +50,12 @@ vector<int> Graph::liaisonNoeud(int sommets){
 
 }
 
+int Graph::nombreVoisins(int sommet){
+	vector<int> liaison;
+	liaison = liaisonNoeud(sommet);
+	return liaison.size();
+}
+
 Graph::~Graph(){
 
 }
@@ -106,6 +112,8 @@ Graph* Graph::rechercheChemin(int source, int destination){
 						altitudePlusPetite = j;
 					}else if(j == destination){
 						altitudePlusPetite = j;
+					}else if(altitude[altitudePlusPetite] > altitude[j]){
+						altitudePlusPetite = j;
 					}
 					if(predecesseur != 0 && predecesseur != source){
 						voisins = liaisonNoeud(predecesseur);
@@ -120,9 +128,6 @@ Graph* Graph::rechercheChemin(int source, int destination){
 							}
 						}
 					}
-
-						altitudePlusPetite = j;
-
 				}
 
 				}
@@ -149,7 +154,13 @@ Graph* Graph::rechercheChemin(int source, int destination){
 
 
 
-void Graph::afficher(Graph *n){
-
-
+void Graph::afficher(){
+	int puissance = 2;
+	for(int i=1;i<=tailleGraph;i++){
+		if(i>=puissance){
+			cout << endl;
+			puissance =puissance*2;
+		}
+		cout << i << "(" << Altitude(i) << ")";
+	}
 }
