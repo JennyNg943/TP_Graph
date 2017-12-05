@@ -14,6 +14,8 @@ int main() {
 	Graph* g = new Graph(choixCouche);
 	int choix;
 
+	g->liaisonNoeud(2);
+
 	do
     {
         cout << "  Menu Graphe\n";

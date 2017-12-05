@@ -16,31 +16,34 @@ Graph::Graph(int couche)
 }
 
 vector<int> Graph::liaisonNoeud(int sommets){
-	if(sommets < pow(2,this->nbCouche)){
+	if(sommets <= tailleGraph){
 		vector<int> voisins;
 		int couche = log2(sommets) + 1;
 		int predecesseur =  fmod(pow(2,couche) + (sommets-1), pow(2,couche));
 		int successeur = pow(2,couche) + fmod(((sommets-pow(2,couche))+1), pow(2,couche));
 		int i = 0;
-		if (sommets/2 != 0){
+		if (sommets/2 != 0 && sommets/2 <= tailleGraph){
 			voisins.push_back(sommets/2);
 			i++;
 		}
-		if(2*sommets != 0){
+		if(2*sommets != 0 && 2*sommets <= tailleGraph){
 			voisins.push_back(sommets*2);
 			i++;
 		}
-		if(2*sommets+1 != 0){
+		if(2*sommets+1 != 0 && 2*sommets+1 <= tailleGraph){
 			voisins.push_back(2*sommets+1);
 			i++;
 		}
-		if (predecesseur != 0 && predecesseur != 2*sommets+1 && predecesseur != sommets/2 &&  predecesseur != 2*sommets){
+		if (predecesseur != 0 && predecesseur != 2*sommets+1 && predecesseur != sommets/2 &&  predecesseur != 2*sommets && predecesseur <= tailleGraph){
 			voisins.push_back(predecesseur);
 			i++;
 		}
-		if(successeur != 0 && successeur != 2*sommets && successeur != 2*sommets+1 && successeur != sommets/2){
+		if(successeur != 0 && successeur != 2*sommets && successeur != 2*sommets+1 && successeur != sommets/2 && successeur <= tailleGraph){
 			voisins.push_back(successeur);
 			i++;
+		}
+		for(vector<int>::iterator i = voisins.begin(); i != voisins.end();++i){
+			cout << *i << endl;
 		}
 		return voisins;
 	}else{
